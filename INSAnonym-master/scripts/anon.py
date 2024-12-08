@@ -15,6 +15,7 @@ def modify_date_within_week(date_str):
     
     weekday = date_obj.weekday()
     random_day_offset = random.randint(0, 6)
+    #Make sure the new date is within the same week
     new_date_obj = date_obj + timedelta(days=random_day_offset - weekday)
     
     random_hours = random.randint(0, 23)
@@ -33,28 +34,6 @@ def add_noise_to_coordinates(lat, lon):
     noise_lon = random.uniform(-0.001, 0.001)
     return round(lat + noise_lat, 6), round(lon + noise_lon, 6)
 
-# def anonymize_csv(input_csv, output_csv):
-#     """Anonymise les données d'un fichier CSV et les écrit dans un autre fichier."""
-#     with open(input_csv, mode='r') as infile, open(output_csv, mode='w', newline='') as outfile:
-#         reader = csv.DictReader(infile, delimiter='\t', fieldnames=['Identifiant', 'Date', 'Latitude', 'Longitude'])
-#         writer = csv.writer(outfile, delimiter=' ', quoting=csv.QUOTE_NONE, escapechar='\\')
-
-#         next(reader)  # Sauter l'en-tête du fichier d'entrée
-
-#         for row in reader:
-#             original_id = row['Identifiant']
-#             date = row['Date']
-#             lat = float(row['Latitude'])
-#             lon = float(row['Longitude'])
-
-#             date_obj = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
-#             week_num = date_obj.isocalendar()[1]
-
-#             anon_id = generate_anonymized_id(original_id, week_num)
-#             anon_date = modify_date_within_week(date)
-#             anon_lat, anon_lon = add_noise_to_coordinates(lat, lon)
-            
-#             writer.writerow([anon_id, anon_date, anon_lat, anon_lon])
 def anonymize_csv(input_csv, output_csv):
     """Anonymise les données d'un fichier CSV et les écrit dans un autre fichier."""
     with open(input_csv, mode='r') as infile, open(output_csv, mode='w', newline='') as outfile:
