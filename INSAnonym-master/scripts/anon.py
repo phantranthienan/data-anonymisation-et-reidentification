@@ -40,7 +40,7 @@ def anonymize_csv(input_csv, output_csv):
         reader = csv.DictReader(infile, delimiter='\t', fieldnames=['Identifiant', 'Date', 'Latitude', 'Longitude'])
         
         # Using writer with space as delimiter and no quoting or escape character
-        writer = csv.writer(outfile, delimiter=' ', quoting=csv.QUOTE_MINIMAL)
+        writer = csv.writer(outfile, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
 
         next(reader)  # Sauter l'en-tête du fichier d'entrée
 
@@ -59,7 +59,7 @@ def anonymize_csv(input_csv, output_csv):
             anon_lat, anon_lon = add_noise_to_coordinates(lat, lon)
             print(anon_lat, anon_lon)
             
-            writer.writerow([anon_id, anon_date, anon_time, anon_lat, anon_lon])
+            writer.writerow([anon_id, f"{anon_date} {anon_time}", f"{anon_lat} {anon_lon}"])
 
 input_csv = 'D:\INSA\semetre 7\projet\Anonym\INSAnonym-master-serv\INSAnonym-master\scripts\origin.csv'
 output_csv = 'D:\INSA\semetre 7\projet\Anonym\INSAnonym-master-serv\INSAnonym-master\scripts\\anon.csv'
