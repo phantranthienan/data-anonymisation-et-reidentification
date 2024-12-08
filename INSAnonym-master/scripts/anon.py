@@ -59,7 +59,7 @@ def anonymize_csv(input_csv, output_csv):
             anon_lat, anon_lon = add_noise_to_coordinates(lat, lon)
             print(anon_lat, anon_lon)
             
-            writer.writerow([anon_id, f"{anon_date} {anon_time}", f"{anon_lat} {anon_lon}"])
+            writer.writerow([anon_id, f"{anon_date} {anon_time}", f"{anon_lat:.6f} {anon_lon:.6f}"])
 
 input_csv = 'D:\INSA\semetre 7\projet\Anonym\INSAnonym-master-serv\INSAnonym-master\scripts\origin.csv'
 output_csv = 'D:\INSA\semetre 7\projet\Anonym\INSAnonym-master-serv\INSAnonym-master\scripts\\anon.csv'
