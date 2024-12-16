@@ -1,7 +1,7 @@
 
 # Specify file paths
-input_file = '/Users/quynhnguyen/Documents/Documents/Project Data/INSAnonym-master 2/test/original_file.csv'  # Replace with the path to your input file
-output_file = '/Users/quynhnguyen/Documents/Documents/Project Data/INSAnonym-master 2/test/result.csv'  # Replace with the desired output file path
+input_file = './origin.csv'  # Replace with the path to your input file
+output_file = './origin.csv'  # Replace with the desired output file path
 
 
 # Open the input file and create the output file
