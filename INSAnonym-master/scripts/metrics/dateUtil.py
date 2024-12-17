@@ -41,8 +41,3 @@ def main(nona, anon, parameters={}): #Compute the utility in function of the dat
         else: return (-1, filesize)
         total += max(0, score) if row2[0] != "DEL" else 0
     return total / filesize
-
-
-nona = "D:\INSA\semetre 7\projet\Anonym\INSAnonym-master-serv\INSAnonym-master\scripts\\origin.csv"
-anon = "D:\INSA\semetre 7\projet\Anonym\INSAnonym-master-serv\INSAnonym-master\scripts\\anon.csv"
-print(main(nona, anon))

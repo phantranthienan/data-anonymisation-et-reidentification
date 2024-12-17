@@ -29,6 +29,6 @@ def zip_csv_file(csv_file_path, zip_file_path):
         return False
 
 # Example Usage
-csv_file = "/Users/quynhnguyen/Documents/Documents/Project Data/Anonym_Project/data-anonymisation-et-reidentification/INSAnonym-master/scripts/origin.csv"   # Replace with your CSV file path
-zip_file = "/Users/quynhnguyen/Documents/Documents/Project Data/Anonym_Project/data-anonymisation-et-reidentification/INSAnonym-master/scripts/origin.zip"  # Replace with your desired ZIP file path
+csv_file = "D:\INSA\semetre 7\projet\Anonym\INSAnonym-master-serv\INSAnonym-master\scripts\\anon.csv"   # Replace with your CSV file path
+zip_file = "D:\INSA\semetre 7\projet\Anonym\INSAnonym-master-serv\INSAnonym-master\scripts\\anon.zip"  # Replace with your desired ZIP file path
 zip_csv_file(csv_file, zip_file)

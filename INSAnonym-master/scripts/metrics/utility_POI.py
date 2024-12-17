@@ -95,7 +95,7 @@ def main(originalFile, anonymisedFile, parameters={"size":2,"nbPOI":3,"night_sta
 	weekend_start = parameters['weekend_start']
 	global weekend_end
 	weekend_end = parameters['weekend_end']
-    
+	
 	fd_original = open(originalFile, newline='')
 	fd_anonymised = open(anonymisedFile, newline='')
 	original_reader = csv.reader(fd_original, delimiter=separator)
@@ -130,12 +130,12 @@ def main(originalFile, anonymisedFile, parameters={"size":2,"nbPOI":3,"night_sta
 			gps = (round(float(lineAno[2]),size), round(float(lineAno[3]),size))
 			if date_time.weekday()<5:
 				if date_time.time()>datetime.time(night_start,00) or date_time.time()<datetime.time(night_end,00):
-				    tabAno[key]['night'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
+					tabAno[key]['night'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
 				elif date_time.time()>datetime.time(work_start,00) and date_time.time()<datetime.time(work_end,00):
-				    tabAno[key]['work'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
+					tabAno[key]['work'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
 			else:
 				if date_time.time()>datetime.time(weekend_start,00) and date_time.time()<datetime.time(weekend_end,00):
-				    tabAno[key]['weekend'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
+					tabAno[key]['weekend'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
 		
 	final_tab_original = defaultdict(defaultdictseption)
 	final_tab_anonymised = defaultdict(defaultdictseption)
@@ -153,10 +153,10 @@ def main(originalFile, anonymisedFile, parameters={"size":2,"nbPOI":3,"night_sta
 				time_second_original = final_tab_original[id][type][gps].total_seconds() if final_tab_original[id][type][gps].total_seconds()>0 else 0
 				time_second_anonymised = final_tab_anonymised[id][type][gps].total_seconds() if final_tab_anonymised[id][type][gps].total_seconds()>0 else 0
 				if time_second_original==0 and time_second_original==0:
-				    continue
+					continue
 				if time_second_original > time_second_anonymised:
-				    score += time_second_anonymised / time_second_original
+					score += time_second_anonymised / time_second_original
 				else:
-				    score += time_second_original / time_second_anonymised
+					score += time_second_original / time_second_anonymised
 		
 	return score/total_size

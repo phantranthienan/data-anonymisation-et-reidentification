@@ -42,25 +42,45 @@ def anonymize_csv(input_csv, output_csv):
         # Using writer with space as delimiter and no quoting or escape character
         writer = csv.writer(outfile, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
 
-        next(reader)  # Sauter l'en-tête du fichier d'entrée
+        # next(reader)  # Sauter l'en-tête du fichier d'entrée
 
-        for row in reader:
-            original_id = row['Identifiant']
-            date = row['Date']
-            lat = float(row['Latitude'])
-            lon = float(row['Longitude'])
+        # for row in reader:
+        #     original_id = row['Identifiant']
+        #     date = row['Date']
+        #     lat = float(row['Latitude'])
+        #     lon = float(row['Longitude'])
 
-            date_obj = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
-            week_num = date_obj.isocalendar()[1]
+        #     date_obj = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+        #     week_num = date_obj.isocalendar()[1]
 
-            anon_id = generate_anonymized_id(original_id, week_num)
-            anon_date, anon_time = modify_date_within_week(date)  # This will remove backslashes
-            print(anon_date)
-            anon_lat, anon_lon = add_noise_to_coordinates(lat, lon)
-            print(anon_lat, anon_lon)
+        #     anon_id = generate_anonymized_id(original_id, week_num)
+        #     anon_date, anon_time = modify_date_within_week(date)  # This will remove backslashes
+        #     print(anon_date)
+        #     anon_lat, anon_lon = add_noise_to_coordinates(lat, lon)
+        #     print(anon_lat, anon_lon)
             
-            writer.writerow([anon_id, f"{anon_date} {anon_time}", f"{anon_lat:.6f} {anon_lon:.6f}"])
+        #     writer.writerow([anon_id, f"{anon_date} {anon_time}", f"{anon_lat:.6f} {anon_lon:.6f}"])
+        for i, row in enumerate(reader, 1):  # Start from 1 for row indexing
+            try:
+                original_id = row['Identifiant']
+                date = row['Date']
+                lat = float(row['Latitude'])
+                lon = float(row['Longitude'])
 
+                # Ensure date is in the correct format before processing
+                date_obj = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+                week_num = date_obj.isocalendar()[1]
+
+                anon_id = generate_anonymized_id(original_id, week_num)
+                anon_date, anon_time = modify_date_within_week(date)  # This will remove backslashes
+                anon_lat, anon_lon = add_noise_to_coordinates(lat, lon)
+
+                # Write the anonymized row
+                writer.writerow([anon_id, f"{anon_date} {anon_time}", f"{anon_lat:.6f} {anon_lon:.6f}"])
+                
+            except Exception as e:
+                print(f"Skipping row {i} due to error: {e}")
+                continue
 input_csv = 'D:\INSA\semetre 7\projet\Anonym\INSAnonym-master-serv\INSAnonym-master\scripts\origin.csv'
 output_csv = 'D:\INSA\semetre 7\projet\Anonym\INSAnonym-master-serv\INSAnonym-master\scripts\\anon.csv'
 
