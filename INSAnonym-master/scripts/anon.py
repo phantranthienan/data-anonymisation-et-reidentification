@@ -76,7 +76,9 @@ def anonymize_csv(input_csv, output_csv):
                 anon_lat, anon_lon = add_noise_to_coordinates(lat, lon)
 
                 # Write the anonymized row
-                writer.writerow([anon_id, f"{anon_date} {anon_time}", f"{anon_lat:.6f} {anon_lon:.6f}"])
+                # writer.writerow([anon_id, f"{anon_date} {anon_time}", f"{anon_lat:.6f} {anon_lon:.6f}"])
+                writer.writerow([anon_id, date_obj, f"{anon_lat:.6f} {anon_lon:.6f}"])
+
                 
             except Exception as e:
                 print(f"Skipping row {i} due to error: {e}")
