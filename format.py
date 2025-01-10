@@ -1,7 +1,7 @@
 
 # Specify file paths
-input_file = './origin.csv'  # Replace with the path to your input file
-output_file = './origin.csv'  # Replace with the desired output file path
+input_file = './geo_data.csv'  # Replace with the path to your input file
+output_file = './geo_data.csv'  # Replace with the desired output file path
 
 
 # Open the input file and create the output file

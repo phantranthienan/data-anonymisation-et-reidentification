@@ -117,7 +117,7 @@ generate_realistic_geo_data_with_groups_gaussian(
     position=(48.8566, 2.3522),  # Center point (e.g., Paris)
     time_interval=("2024-10-01", "2024-10-30"),  # Time interval
     number_of_people=10,  # Number of individuals
-    output_file="geo_data.csv"
+    output_file="../geo_data.csv"
 )
 
 """
