@@ -121,9 +121,9 @@ def main(originalFile, anonymisedFile, parameters=None):
 				tabOri[key]['night'][gps] += diff_time(key, date_time, last_date_original_tab)
 			elif date_time.time()>datetime.time(work_start,00) and date_time.time()<datetime.time(work_end,00):
 				tabOri[key]['work'][gps] += diff_time(key, date_time, last_date_original_tab)
-		else:
-			if date_time.time()>datetime.time(weekend_start,00) and date_time.time()<datetime.time(weekend_end,00):
-				tabOri[key]['weekend'][gps] += diff_time(key, date_time, last_date_original_tab)
+		# else:
+		# 	if date_time.time()>datetime.time(weekend_start,00) and date_time.time()<datetime.time(weekend_end,00):
+		# 		tabOri[key]['weekend'][gps] += diff_time(key, date_time, last_date_original_tab)
 					
 		#--- Anonymisation file
 		if lineAno[0] != "DEL":
@@ -135,9 +135,9 @@ def main(originalFile, anonymisedFile, parameters=None):
 					tabAno[key]['night'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
 				elif date_time.time()>datetime.time(work_start,00) and date_time.time()<datetime.time(work_end,00):
 					tabAno[key]['work'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
-			else:
-				if date_time.time()>datetime.time(weekend_start,00) and date_time.time()<datetime.time(weekend_end,00):
-					tabAno[key]['weekend'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
+			# else:
+			# 	if date_time.time()>datetime.time(weekend_start,00) and date_time.time()<datetime.time(weekend_end,00):
+			# 		tabAno[key]['weekend'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
 		
 	final_tab_original = defaultdict(defaultdictseption)
 	final_tab_anonymised = defaultdict(defaultdictseption)

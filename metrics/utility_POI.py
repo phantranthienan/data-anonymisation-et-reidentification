@@ -53,6 +53,8 @@ nbPOI = 3
 night_start, night_end = 22, 6
 # De 22h00 à 6h00
 work_start, work_end = 9, 16
+# Add lunch time
+lunch_time = [12,13]
 # De 9h00 à 16h00
 weekend_start, weekend_end = 10, 18
 
@@ -119,11 +121,11 @@ def main(originalFile, anonymisedFile, parameters=None):
 		if date_time.weekday()<5:
 			if date_time.time()>datetime.time(night_start,00) or date_time.time()<datetime.time(night_end,00):
 				tabOri[key]['night'][gps] += diff_time(key, date_time, last_date_original_tab)
-			elif date_time.time()>datetime.time(work_start,00) and date_time.time()<datetime.time(work_end,00):
+			elif date_time.time()>datetime.time(work_start,00) and date_time.time()<datetime.time(work_end,00) and date_time.time().hour not in lunch_time :
 				tabOri[key]['work'][gps] += diff_time(key, date_time, last_date_original_tab)
-		else:
-			if date_time.time()>datetime.time(weekend_start,00) and date_time.time()<datetime.time(weekend_end,00):
-				tabOri[key]['weekend'][gps] += diff_time(key, date_time, last_date_original_tab)
+		# else:
+		# 	if date_time.time()>datetime.time(weekend_start,00) and date_time.time()<datetime.time(weekend_end,00):
+		# 		tabOri[key]['weekend'][gps] += diff_time(key, date_time, last_date_original_tab)
 					
 		#--- Anonymisation file
 		if lineAno[0] != "DEL":
@@ -135,9 +137,9 @@ def main(originalFile, anonymisedFile, parameters=None):
 					tabAno[key]['night'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
 				elif date_time.time()>datetime.time(work_start,00) and date_time.time()<datetime.time(work_end,00):
 					tabAno[key]['work'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
-			else:
-				if date_time.time()>datetime.time(weekend_start,00) and date_time.time()<datetime.time(weekend_end,00):
-					tabAno[key]['weekend'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
+			# else:
+			# 	if date_time.time()>datetime.time(weekend_start,00) and date_time.time()<datetime.time(weekend_end,00):
+			# 		tabAno[key]['weekend'][gps] += diff_time(key, date_time, last_date_anonymised_tab)
 		
 	final_tab_original = defaultdict(defaultdictseption)
 	final_tab_anonymised = defaultdict(defaultdictseption)
