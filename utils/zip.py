@@ -29,6 +29,11 @@ def zip_csv_file(csv_file_path, zip_file_path):
         return False
 
 # Example Usage
+<<<<<<< HEAD:zip.py
 csv_file = "file_origin/big_survey_results.csv"   # Replace with your CSV file path
 zip_file = "./origin.zip"  # Replace with your desired ZIP file path
+=======
+csv_file = "/Users/quynhnguyen/Documents/Documents/Project Data/Anonymisation Project/Anonymisation-Project/anonymisation/ano_data/ano_2.csv"   # Replace with your CSV file path
+zip_file = "/Users/quynhnguyen/Documents/Documents/Project Data/Anonymisation Project/Anonymisation-Project/anonymisation/ano_data/ano_2.zip"  # Replace with your desired ZIP file path
+>>>>>>> 1b3b8760f2f77012ca523445b67cca592bef0382:utils/zip.py
 zip_csv_file(csv_file, zip_file)
